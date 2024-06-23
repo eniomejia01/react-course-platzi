@@ -14,26 +14,6 @@ function MyOrder() {
 
     return (
 
-      // <Layout>
-      //     MyOrder
-
-      //     <div className='flex flex-col w-80'> {/* flex-1 coloca elementos en la parte inferior de la pantalla */}
-
-      //         {
-      //             context.order?.slice(-1)[0].products.map( product => (
-      //                 <OrderCard
-      //                     key = {product.id}
-      //                     id = {product.id}
-      //                     title = {product.title}
-      //                     imageURL = {product.image}
-      //                     price = {product.price}
-      //                 />
-      //             ))
-      //         }
-
-      //     </div>
-      // </Layout>
-
         <Layout>
             <div className="flex w-80 items-center justify-center relative mb-5">
                 <Link to='/my-orders' className="absolute left-0">

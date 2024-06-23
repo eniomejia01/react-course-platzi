@@ -32,6 +32,10 @@ function MyOrders() {
                 ))
             }
 
+            <Link to={'/'}>
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold border rounded-lg p-3 mt-7">Seguir comprando</button>
+            </Link>
+
         </Layout>
         
 
