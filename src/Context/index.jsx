@@ -29,10 +29,10 @@ export const ShoppingCartProvider = ({children}) => {
 
     // Get products
     const [ items, setItems ] = useState(null);
+    const [ filteredItems, setFilteredItems ] = useState(null);
 
     // Get products by title
     const [ searchByTitle, setSearchByTitle ] = useState(null);
-    console.log('searchByTitle:', searchByTitle )
 
     useEffect( () => {
         
@@ -42,6 +42,18 @@ export const ShoppingCartProvider = ({children}) => {
 
 
     }, []);
+
+
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter( item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+
+    useEffect( () => {
+
+        if(searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+
+    }, [items, searchByTitle]);
+
 
 
 
@@ -65,7 +77,8 @@ export const ShoppingCartProvider = ({children}) => {
             items,
             setItems,
             searchByTitle,
-            setSearchByTitle
+            setSearchByTitle,
+            filteredItems
 
         }}>
 

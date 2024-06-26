@@ -9,7 +9,45 @@ function Home() {
 
     const context = useContext(ShoppingCartContext);
 
+    // const renderView = () => {
+    //     if(context.searchByTitle?.length > 0 ){
+    //         if( context.filteredItems?.length > 0){
 
+    //             return(
+    //                 context.filteredItems?.map( (item) => (
+    //                     <Card key={item.id} data={item}/>
+    //                 ))
+    //             )
+    //         } else{
+    //             return(
+    //                 <div>We don't have anything :( </div>
+    //             )
+    //         }
+    //     } else{
+
+    //         return(
+
+    //             context.items?.map( (item) => (
+    //                 <Card key={item.id} data={item}/>
+    //             ))
+    //         )
+
+    //     }
+    // }
+
+    const renderView = () => {
+        const itemsToRender = context.searchByTitle?.length > 0
+            ? context.filteredItems
+            : context.items;
+    
+        if (itemsToRender?.length > 0) {
+            return itemsToRender.map(item => (
+                <Card key={item.id} data={item} />
+            ));
+        } else {
+            return <p className='col-span-4 flex justify-center'>No Results Found :(</p>;
+        }
+    };
 
 
     return (
@@ -32,11 +70,7 @@ function Home() {
 
             <div className='grid gap-7 grid-cols-4 w-full max-w-screen-lg'>
 
-                {
-                    context.items?.map( (item) => (
-                        <Card key={item.id} data={item}/>
-                    ))
-                }
+                { renderView() }
             </div>
             <ProductDetail/>
         </Layout>
