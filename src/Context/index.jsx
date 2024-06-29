@@ -34,6 +34,9 @@ export const ShoppingCartProvider = ({children}) => {
     // Get products by title
     const [ searchByTitle, setSearchByTitle ] = useState(null);
 
+    // Get products by category
+    const [ searchByCategory, setSearchByCategory ] = useState(null);
+
     useEffect( () => {
         
         fetch('https://fakestoreapi.com/products')
@@ -48,11 +51,46 @@ export const ShoppingCartProvider = ({children}) => {
         return items?.filter( item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
     }
 
+    const filteredItemsByCategory = (items, searchByCategory) => {
+        return items?.filter( item => item.category.toLowerCase().includes(searchByCategory.toLowerCase()))
+    }
+
+    const filterBy = ( searchType, items, searchByTitle, searchByCategory) => {
+
+        if( searchType === 'By_TITLE') {
+            return filteredItemsByTitle(items, searchByTitle);
+        
+        }
+
+        if( searchType === 'By_CATEGORY') {
+            return filteredItemsByCategory(items, searchByCategory);
+        
+        }
+
+        if( searchType === 'By_TITLE_AND_CATEGORY') {
+            return filteredItemsByCategory(items, searchByCategory).filter( item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
+        
+        }
+
+        if( searchType === null) {
+            return items;
+        }
+        
+
+    }
+
     useEffect( () => {
 
-        if(searchByTitle) setFilteredItems(filteredItemsByTitle(items, searchByTitle))
+        if(searchByTitle && searchByCategory) setFilteredItems(filterBy('By_TITLE_AND_CATEGORY', items, searchByTitle, searchByCategory));
+        if(searchByTitle && !searchByCategory) setFilteredItems(filterBy('By_TITLE', items, searchByTitle, searchByCategory));
+        if(!searchByTitle && searchByCategory) setFilteredItems(filterBy('By_CATEGORY', items, searchByTitle, searchByCategory));
+        if(!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
 
-    }, [items, searchByTitle]);
+        // return () => {
+        //     setSearchByTitle(null);
+        // }
+
+    }, [items, searchByTitle, searchByCategory]);
 
 
 
@@ -78,7 +116,9 @@ export const ShoppingCartProvider = ({children}) => {
             setItems,
             searchByTitle,
             setSearchByTitle,
-            filteredItems
+            filteredItems,
+            searchByCategory,
+            setSearchByCategory
 
         }}>
 
