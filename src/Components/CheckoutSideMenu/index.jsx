@@ -36,7 +36,7 @@ const CheckoutSideMenu = () => {
 
     return(
         <aside 
-            className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu  flex-col fixed right-0 border border-black rounded-lg bg-white`}
+            className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col md:right-0 fixed border border-black rounded-lg bg-white xs:w-80 xss:w-72 left-1/2 md:left-auto  xs:transform md:transform-none xs:-translate-x-1/2 md:-translate-x0  mt-10`}
             
         >
             <div className='flex justify-between items-center p-3'>
@@ -78,7 +78,7 @@ const CheckoutSideMenu = () => {
 
                 <Link to='/my-orders/last'>
 
-                    <button className='bg-black py-3 text-white w-full rounded-lg' onClick={ () => handleCheckout() }>Checkout</button>
+                    <button className='bg-black py-3 text-white w-full rounded-lg mb-10' onClick={ () => handleCheckout() }>Checkout</button>
 
                 </Link>
             </div>
@@ -87,5 +87,5 @@ const CheckoutSideMenu = () => {
     )
 }
 
-export default CheckoutSideMenu;
+export default CheckoutSideMenu
 

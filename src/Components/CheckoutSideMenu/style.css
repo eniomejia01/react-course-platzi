@@ -1,7 +1,7 @@
 .checkout-side-menu{
     width: 360px;
     height: calc(100vh - 65px);
-    top: 65px;
+    top: 70px;
 }
 
 .scrollable-cards {
