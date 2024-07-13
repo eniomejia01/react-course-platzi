@@ -53,7 +53,7 @@ function Home() {
 
 
         <Layout>
-            <div className="flex w-80 items-center justify-center relative mb-4">
+            <div className="flex w-80 items-center justify-center relative mb-4 mt-5 md:mt-0">
                 <h1 className='font-medium text-xl'>Excliusive Products</h1>
             </div>
 

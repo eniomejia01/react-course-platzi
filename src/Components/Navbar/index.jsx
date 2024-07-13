@@ -12,83 +12,87 @@ const Navbar = () => {
     
     return (
 
-        <nav className='md:flex md:justify-between md:flex-row hidden justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white '>
+        <nav className='md:flex md:justify-between md:flex-row  justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white '>
 
-            <ul className='flex items-center gap-3'>
+            <ul className='md:flex md:flex-row flex flex-col  gap-3'>
                 <li className='font-semibold text-lg'>
                     <NavLink to='/'>
                         Shopi
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink
-                        to='/'
-                        onClick={() => context.setSearchByCategory()}
-                        className={({ isActive }) =>
-                            isActive ? activeStyle : undefined
-                        }    
-                    >
-                        All
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/mensClothing'
-                        onClick={() => context.setSearchByCategory('men\'s clothing')}
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }
-                    >
-                        Men's clothing
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/electronics'
-                        onClick={() => context.setSearchByCategory('electronics')}
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }    
-                    >
-                        Electronics
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/jewelery'
-                        onClick={() => context.setSearchByCategory('jewelery')}
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }    
-                    >
-                        Jewelery
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/womensClothing'
-                        onClick={() => context.setSearchByCategory('women\'s clothing')}
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }    
-                    >
-                        Women's clothing
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                        to='/others'
-                        onClick={() => context.setSearchByCategory('others')}
-                        className={({ isActive }) => 
-                            isActive ? activeStyle : undefined
-                        }    
-                    >
-                        Others
-                    </NavLink>
-                </li>
+
+                <div className='flex items-center gap-3'>
+
+                    <li>
+                        <NavLink
+                            to='/'
+                            onClick={() => context.setSearchByCategory()}
+                            className={({ isActive }) =>
+                                isActive ? activeStyle : undefined
+                            }    
+                        >
+                            All
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                            to='/mensClothing'
+                            onClick={() => context.setSearchByCategory('men\'s clothing')}
+                            className={({ isActive }) => 
+                                isActive ? activeStyle : undefined
+                            }
+                        >
+                            Men's
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                            to='/electronics'
+                            onClick={() => context.setSearchByCategory('electronics')}
+                            className={({ isActive }) => 
+                                isActive ? activeStyle : undefined
+                            }    
+                        >
+                            Electronics
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                            to='/jewelery'
+                            onClick={() => context.setSearchByCategory('jewelery')}
+                            className={({ isActive }) => 
+                                isActive ? activeStyle : undefined
+                            }    
+                        >
+                            Jewelery
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                            to='/womensClothing'
+                            onClick={() => context.setSearchByCategory('women\'s clothing')}
+                            className={({ isActive }) => 
+                                isActive ? activeStyle : undefined
+                            }    
+                        >
+                            Women's
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                            to='/others'
+                            onClick={() => context.setSearchByCategory('others')}
+                            className={({ isActive }) => 
+                                isActive ? activeStyle : undefined
+                            }    
+                        >
+                            Others
+                        </NavLink>
+                    </li>
+                </div>
             </ul>
 
-            <ul className='flex items-center gap-3'>
+            <ul className='items-center gap-3 md:flex hidden'>
                 <li className='text-black/50'>
                     isma@correo.com
                 </li>
