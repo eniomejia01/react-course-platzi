@@ -6,7 +6,7 @@ export const ShoppingCartProvider = ({children}) => {
 
     //Shoping Cart . Incrment quntity
     const [ count, setCount ] = useState(0);
-    
+
     
     //checkout-side-menu . Open/Close
     const [ isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen ] = useState(false);
