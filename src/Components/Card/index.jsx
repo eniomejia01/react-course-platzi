@@ -51,12 +51,12 @@ const Card = (data) => {
             className='bg-white cursor-pointer md:w-56 md:h-96 w-56 h-96 rounded-lg shadow-md mb-9'
             onClick={ () => ShowProduct(data.data)}
         >
-
-
+            
+            
             <figure className='relative mb-3 w-full h-4/5 items-center'>
                 <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5'>{data.data.category}</span>
-                <img className='md:w-full md:h-full md:object-contain rounded-lg border object-contain w-full h-56' src={data.data.image} alt={data.data.title} 
-            />
+                <img className='md:w-full md:h-full md:object-contain rounded-lg border object-contain w-full h-56' src={data.data.image} alt={data.data.title}/>
+                <button className='absolute top-0 left-0 flex justify-center items-center bg-gray-500 bg-opacity-10 hover:bg-opacity-100 rounded-xl m-2 p-1 pl-4 pr-4'>Detalles</button>
                 {renderIcon(data.data.id)}
                 
             </figure>
