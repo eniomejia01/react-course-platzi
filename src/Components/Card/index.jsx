@@ -40,7 +40,7 @@ const Card = (data) => {
                         onClick={(event) => addProductsToCart(event, data.data)}
                     >
                         <PlusIcon className='size-6 text-black'></PlusIcon>
-                    </div>
+                </div>
             )
 
         }

@@ -10,8 +10,8 @@ export const ShoppingCartProvider = ({children}) => {
     
     //checkout-side-menu . Open/Close
     const [ isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen ] = useState(false);
-    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
-    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false)
+    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
+    const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
     
     //productDetail . Open/Close
     const [ isProductDetailOpen, setIsProductDetailOpen ] = useState(false);
