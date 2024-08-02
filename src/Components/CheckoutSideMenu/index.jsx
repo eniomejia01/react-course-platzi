@@ -10,11 +10,11 @@ import { totalPrice } from '../../utils';
 const CheckoutSideMenu = () => {
 
     
-    const context = useContext(ShoppingCartContext);
+    const { isCheckoutSideMenuOpen, closeCheckoutSideMenu, cartProducts, setCartProducts, setOrder, setSearchByTitle, order } = useContext(ShoppingCartContext);
 
-    const handleDelete = (id) => {
-        const filteredProducts = context.cartProducts.filter(product => product.id != id);
-        context.setCartProducts(filteredProducts);
+        const handleDelete = (id) => {
+        const filteredProducts = cartProducts.filter(product => product.id != id);
+        setCartProducts(filteredProducts);
     }
 
     const handleCheckout = () => {
@@ -23,20 +23,36 @@ const CheckoutSideMenu = () => {
         const orderToAdd = {
 
             date: new Date().toLocaleDateString(),
-            products: context.cartProducts,
-            totalProducts: context.cartProducts.length,
-            totalPrice: totalPrice(context.cartProducts)
+            products: cartProducts,
+            totalProducts: cartProducts.length,
+            totalPrice: totalPrice(cartProducts)
         }
 
-        context.setOrder([...context.order, orderToAdd]);
-        context.setCartProducts([]);
-        context.setSearchByTitle(null);
-        context.closeCheckoutSideMenu();
+        setOrder([...order, orderToAdd]);
+        setCartProducts([]);
+        setSearchByTitle(null);
+        closeCheckoutSideMenu();
+    }
+
+    const increaseQuantity = (id, quantity) => {
+        const productCart = cartProducts.find(items  => items .id === id);
+        productCart.quantity += 1;
+        setCartProducts([...cartProducts]); // Causar un renderizado actualizando el estado
+    }
+    
+    const decreaseQuantity = (id, quantity) => {
+        const deletedProduct = cartProducts.filter(product => product.id != id);
+        const productCart = cartProducts.find(items  => items .id === id);
+        productCart.quantity -= 1;
+        setCartProducts([...cartProducts]); 
+        if (productCart.quantity === 0){
+            setCartProducts(deletedProduct);
+        } 
     }
 
     return(
         <aside 
-            className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col md:right-0 fixed border border-black rounded-lg bg-white xs:w-80 xss:w-72 left-1/2 md:left-auto  xs:transform md:transform-none xs:-translate-x-1/2 md:-translate-x0  mt-10`}
+            className={`${isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col md:right-0 fixed border border-black rounded-lg bg-white xs:w-1/3 xss:w-72 left-1/2 md:left-auto  xs:transform md:transform-none xs:-translate-x-1/2 md:-translate-x0  mt-10`}
             
         >
             <div className='flex justify-between items-center p-3'>
@@ -45,7 +61,7 @@ const CheckoutSideMenu = () => {
 
                     <XMarkIcon 
                         className='size-6 text-black cursor-pointer'
-                        onClick={() => context.closeCheckoutSideMenu()}
+                        onClick={() => closeCheckoutSideMenu()}
                     >
 
                     </XMarkIcon>
@@ -56,7 +72,7 @@ const CheckoutSideMenu = () => {
             <div className='px-6 overflow-y-scroll flex-1'> {/* flex-1 coloca elementos en la parte inferior de la pantalla */}
 
                 {
-                    context.cartProducts.map( product => (
+                    cartProducts.map( product => (
                         <OrderCard
                             key = {product.id}
                             id = {product.id}
@@ -64,6 +80,9 @@ const CheckoutSideMenu = () => {
                             imageURL = {product.image}
                             price = {product.price}
                             handleDelete={handleDelete}
+                            quantity={product.quantity}
+                            increaseQuantity={increaseQuantity}
+                            decreaseQuantity={decreaseQuantity}
                         />
                     ))
                 }
@@ -73,7 +92,7 @@ const CheckoutSideMenu = () => {
             <div className='px-10 mb-6'>
                 <p className='flex justify-between items-center mb-2'>
                     <span className='font-light'>Total:</span>
-                    <span className='font-medium text-2xl'>${ totalPrice(context.cartProducts) }</span>
+                    <span className='font-medium text-2xl'>${ totalPrice(cartProducts) }</span>
                 </p>
 
                 <Link to='/my-orders/last'>
